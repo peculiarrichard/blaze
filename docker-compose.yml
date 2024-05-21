@@ -1,0 +1,22 @@
+version: "3.7"
+services:
+  next:
+    container_name: blaze
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    environment:
+      - NODE_ENV=development
+    command: "npm run dev"
+    ports:
+      - 3000:3000
+    networks:
+      - application
+
+networks:
+  application:
+    driver: bridge
